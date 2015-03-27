@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Brands</title>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+    </head>
+    <body>
+        <h3>Brands found in our stores:</h3>
+
+        <form action="/brands" method="post">
+            <label for="name">Brand</label>
+            <input type="text" id="name" name="name">
+
+            <button type="submit">Add brand</button>
+        </form>
+
+
+        {% if brands is not empty %}
+            <p>Here are our brands:</p>
+            <ul>
+        {% for brand in brand %}
+            <li><a href="/brands/{{ brand.getId }}">{{ brand.getName }}</a></li>
+        {% endfor %}
+            </ul>
+
+        {% endif %}
+
+        <form action='/delete_brands' method='post'>
+            <input name='_method' type='hidden' value='delete'>
+            <button type='submit'>Clear</button>
+        </form>
+
+        <a href="/"><p>Home</p></a>
+        <a href="/stores"><p>Stores</p></a>
+
+
+    </body>
+</html>

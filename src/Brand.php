@@ -69,6 +69,7 @@
 
             } return $brands;
         }
+ 
 
         //DELETE ALL BRANDS
         static function deleteAll()

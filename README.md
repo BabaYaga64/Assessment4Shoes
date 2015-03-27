@@ -33,9 +33,11 @@ shoes=# CREATE DATABASE shoes_test WITH TEMPLATE shoes;
 CREATE DATABASE
 shoes=# \c shoes_test;
 You are now connected to database "shoes_test" as user "Guest".
-shoes_test=# 
+shoes_test=#
 
-
+shoes_test=# \c shoes;
+You are now connected to database "shoes" as user "Guest".
+shoes=#
 
 
 

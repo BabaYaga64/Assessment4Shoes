@@ -96,39 +96,37 @@
         }
 
     //UPDATE
-    function updateStore($new_store)
-    {
-        $GLOBALS['DB']->exec("UPDATE stores SET name '{$new_name}' WHERE id = {$this->getId()};");
-        $this->setName($new_name);
-    }
+        function updateStore($new_store)
+        {
+            $GLOBALS['DB']->exec("UPDATE stores SET name '{$new_name}' WHERE id = {$this->getId()};");
+            $this->setName($new_name);
+        }
 
-
-//When a user is viewing a single store, list out all of the brands that have been added so far to that store and allow them to add a brand to that store. Create a method to get the brands sold at a store, and use a join statement in it.
 
 //JOIN STORES AND BRANDS
 
-    function addBrand($brand)
-    {
-        $GLOBALS['DB']->exec("INSERT INTO shoes_brands (brand_id, store_id) VALUES ({$brand->getId()}, {$this->getId()});");
-    }
-
-    function getBrands()
-    {
-        $query = $GLOBALS['DB']->query("SELECT brands.* FROM
-            stores JOIN shoes_brands ON (stores.id = shoes_brands.store_id)
-                   JOIN brands ON (shoes_brands.brand_id = brands.id)
-                   WHERE stores.id = {$this->getId()};");
-        $brand_ids = $query->fetchAll(PDO::FETCH_ASSOC);
-
-        $brands = array();
-        foreach ($brand_ids as $brand) {
-            $id = $brand['id'];
-            $name = $brand['name'];
-            $new_brand = new Brand($id, $name);
-            array_push($brands, $new_brand);
+        function addBrand($brand)
+        {
+            $GLOBALS['DB']->exec("INSERT INTO shoes_brands (brand_id, store_id) VALUES ({$brand->getId()}, {$this->getId()});");
         }
-        return $brands;
-    }
+
+        function getBrands()
+        {
+            $query = $GLOBALS['DB']->query("SELECT brands.* FROM
+                stores JOIN shoes_brands ON (stores.id = shoes_brands.store_id)
+                       JOIN brands ON (shoes_brands.brand_id = brands.id)
+                       WHERE stores.id = {$this->getId()};");
+            $brand_ids = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            $brands = array();
+            foreach ($brand_ids as $brand) {
+                $id = $brand['id'];
+                $name = $brand['name'];
+                $new_brand = new Brand($id, $name);
+                array_push($brands, $new_brand);
+            }
+            return $brands;
+        }
 
 
     }//Ends class

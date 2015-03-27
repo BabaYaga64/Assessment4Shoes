@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Stores</title>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+    </head>
+    <body>
+
+        <h1>Stores to Check Out</h1>
+        <form action="/stores" method="post">
+            <label for="name">Store Name</label>
+            <input type="text" name="name" id="name">
+
+            <button name="submit">Add a store</button>
+        </form>
+
+        {% if stores is not empty %}
+        <p>
+            Here are our stores:
+            <ul>
+                {% for store in stores %}
+                <li><a href="/stores/{{ store.getId }}/">{{ store.getName }}</a></li>
+                {% endfor %}
+            </ul>
+                {% else %}
+            <p>There are no stores in your area.</p>
+                {% endif %}
+        </p>
+
+
+        <form action='/delete_stores' method='post'>
+            <input name='_method' type='hidden' value='delete'>
+            <button type='submit'>Clear</button>
+        </form>
+        <a href="/"><p>Home</p></a>
+            <a href="/brands"><p>Brands<p></a>
+    </body>
+</html>
