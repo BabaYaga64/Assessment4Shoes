@@ -6,6 +6,7 @@
     */
 
     require_once "src/Store.php";
+    require_once "src/Brand.php";
 
     $DB = new PDO('pgsql:host=localhost;dbname=shoes_test');
 
@@ -101,6 +102,44 @@
             //Assert
             $this->assertEquals([$test_store, $test_store2], $result);
         }
+
+        function test_getBrands()
+        {
+            //Arrange
+            $id = 1;
+            $name = "Abazaba";
+            $test_store = new Store($id, $name);
+            $test_store->save();
+
+            $id2 = 2;
+            $name = "Spooky Shoes";
+            $test_brand = new Brand($id, $name);
+            $test_brand->save();
+
+            $id3 = 3;
+            $name2 = "Adidas";
+            $test_brand2 = new Brand($id, $name);
+            $test_brand2->save();
+
+            //Act
+            $test_store->addBrand($test_brand);
+            $test_store2->addBrand($test_brand2);
+
+            //Assert
+            $result = $test_store->getBrands();
+            $this->assertEquals([$test_brand, $test_brand2], $result);
+
+
+
+
+        }
+
+
+
+
+
+
+
 
 
 

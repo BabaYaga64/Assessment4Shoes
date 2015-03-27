@@ -13,7 +13,7 @@
 
         }
 
-        //GETTERS
+    //GETTERS
 
         function getId()
         {
@@ -25,7 +25,7 @@
             return $this->name;
         }
 
-        //SETTERS
+    //SETTERS
 
         function setId($new_id)
         {
@@ -37,7 +37,7 @@
             $this->name = (string) $new_name;
         }
 
-        //DB FUNCTIONS
+    //DB FUNCTIONS
         function save()
         {
             $statement = $GLOBALS['DB']->query("INSERT INTO stores (name) VALUES    ('{$this->getName()}') RETURNING id;");
@@ -84,11 +84,23 @@
             } return $stores;
         }
 
-        //DELETE
+    //DELETE
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM stores *;");
         }
+
+        function deleteStore()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM stores WHERE id = {$this->getId()};");
+        }
+
+    //UPDATE
+    function updateStore($new_store)
+    {
+        $GLOBALS['DB']->exec("UPDATE stores SET name '{$new_name}' WHERE id = {$this->getId()};");
+        $this->setName($new_name);
+    }
 
 
 
