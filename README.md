@@ -11,6 +11,35 @@ Database Commands
 ****************
 As you create your tables, copy all commands used in psql into your readme file.
 
+Guest=# CREATE DATABASE shoes;
+CREATE DATABASE
+
+Guest=# \c shoes;
+You are now connected to database "shoes" as user "Guest".
+
+shoes=# CREATE TABLE stores (id serial PRIMARY KEY, name varchar);
+CREATE TABLE
+shoes=#
+
+shoes=# CREATE TABLE brands (id serial PRIMARY KEY, name varchar);
+CREATE TABLE
+shoes=#
+
+shoes=# CREATE TABLE shoes_brands (id serial PRIMARY KEY, store_id int, brand_id int);
+CREATE TABLE
+shoes=#
+
+shoes=# CREATE DATABASE shoes_test WITH TEMPLATE shoes;
+CREATE DATABASE
+shoes=# \c shoes_test;
+You are now connected to database "shoes_test" as user "Guest".
+shoes_test=# 
+
+
+
+
+
+
 ***************
 
 Technology
