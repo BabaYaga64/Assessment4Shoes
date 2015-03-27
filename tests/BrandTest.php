@@ -122,7 +122,7 @@
 
         }
 
-        //Finds a specific book from the two that are saved
+        //Finds a specific brand from the two that are saved
         function test_find()
         {
             //Assert
@@ -141,7 +141,7 @@
             $result = Brand::find($test_brand->getId());
 
             //Assert
-            $this->assertEquals($test_book, $result);
+            $this->assertEquals($test_brand, $result);
         }
 
         //find stores that carry a certain brand

@@ -73,13 +73,37 @@
         //DELETE ALL BRANDS
         static function deleteAll()
         {
-            $GLOBALS['DB']->exec("DELETE FROM books *;");
+            $GLOBALS['DB']->exec("DELETE FROM brands *;");
         }
 
         // (don't worry about building out updating, listing, or deleting for brands).
 
+        //JOIN STORES AND BRANDS
 
+        function addStore($store)
+        {
+            $GLOBALS['DB']->exec("INSERT INTO shoes_brands (brand_id, store_id) VALUES ({$this->getId()}, {$store->getId()});");
+        }
 
+        function getStores()
+        {
+            $query = $GLOBALS['DB']->query("SELECT stores.* FROM
+             brands JOIN shoes_brands ON (brands.id = shoes_brands.brand_id)
+                    JOIN stores ON (shoes_brands.store_id = stores.id)
+                    WHERE brands.id = {$this->getId()};");
+
+            $store_ids = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            $stores = array();
+            foreach ($store_ids as $store) {
+                $id = $store['id'];
+                $name = $store['name'];
+                $new_store = new Store($id, $name);
+                array_push($stores, $new_store);
+
+            } return $stores;
+
+        }
 
 
 

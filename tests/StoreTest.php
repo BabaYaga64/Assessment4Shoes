@@ -123,7 +123,7 @@
 
             //Act
             $test_store->addBrand($test_brand);
-            $test_store2->addBrand($test_brand2);
+            $test_store->addBrand($test_brand2);
 
             //Assert
             $result = $test_store->getBrands();
