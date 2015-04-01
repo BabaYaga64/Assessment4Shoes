@@ -4,7 +4,9 @@ March 27th, 2015
 
 Description
 
-This program lists shoe stores and the brands of shoes they carry. This is a many to many relationship in SQL.
+This program lists shoe stores and the brands of shoes they carry, illustrating a many-to-many relationship in SQL. One can view all of the brands that a particular store carries, and a user can add their own brand to the store. Likewise, a user can view all of the stores that a certain brand can be found in, and can add their own store to the list.
+
+Silex and Twig software is used to display the user interface for the app. 
 
 ***************
 

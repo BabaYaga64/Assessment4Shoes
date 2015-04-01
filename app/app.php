@@ -23,6 +23,7 @@
 
     });
 
+
     //SHOW ALL STORES
     $app->get("/stores", function() use ($app) {
         return $app['twig']->render('stores.twig', array('stores' => Store::getAll()));
@@ -31,15 +32,15 @@
     //SHOW A SINGLE STORE
     $app->get("/stores/{id}", function($id) use ($app) {
         $store = Store::find($id);
-        return $app['twig']->render('stores.twig', array('store' => $store, 'stores' => $brand->getStores(), 'stores' => Store::getAll()));
+        return $app['twig']->render('a_store.twig', array('store' => $store, 'stores' => $brand->getStores(), 'stores' => Store::getAll()));
     });
 
-    //ADD A STORE AND VIEW ALL ITS BRANDS
-    // $app->get("/stores/{id}", function($id) use ($app)  {
-    //     $current_store = Store::find($id);
-    //     $current_store = $current_brand->getStores();
-    //     return $app['twig']->render('stores.twig', array('store' => $current_store));
-    // });
+    // ADD A STORE AND VIEW ALL ITS BRANDS
+    $app->get("/stores/{id}", function($id) use ($app)  {
+        $current_store = Store::find($id);
+        $current_store = $current_brand->getStores();
+        return $app['twig']->render('stores.twig', array('store' => $current_store));
+    });
 
     $app->post("/stores", function() use ($app) {
         $new_store = new Store($_POST['id'], $_POST['name']);
