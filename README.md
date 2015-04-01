@@ -6,39 +6,21 @@ Description
 
 This program lists shoe stores and the brands of shoes they carry. This is a many to many relationship in SQL.
 
-Database Commands
+***************
 
-****************
-As you create your tables, copy all commands used in psql into your readme file.
+Setup Instructions
 
-Guest=# CREATE DATABASE shoes;
-CREATE DATABASE
+1. Clone git repository from remote repository on GitHubs
 
-Guest=# \c shoes;
-You are now connected to database "shoes" as user "Guest".
+2. Start PHP server in the web directory of your project folder. 
 
-shoes=# CREATE TABLE stores (id serial PRIMARY KEY, name varchar);
-CREATE TABLE
-shoes=#
+3. Point your browser to your root path. 
 
-shoes=# CREATE TABLE brands (id serial PRIMARY KEY, name varchar);
-CREATE TABLE
-shoes=#
+4. Create two databases in psql: shoes and shoes_test. Connect to each of these and then import the .sql files from the remote repository to your local machine. 
 
-shoes=# CREATE TABLE shoes_brands (id serial PRIMARY KEY, store_id int, brand_id int);
-CREATE TABLE
-shoes=#
+5. Install the required dependencies via your composer.json file and Composer
 
-shoes=# CREATE DATABASE shoes_test WITH TEMPLATE shoes;
-CREATE DATABASE
-shoes=# \c shoes_test;
-You are now connected to database "shoes_test" as user "Guest".
-shoes_test=#
-
-shoes_test=# \c shoes;
-You are now connected to database "shoes" as user "Guest".
-shoes=#
-
+6. Start your app by opening root path in browser.
 
 
 
@@ -54,6 +36,52 @@ PHPUnit
 Test Driven Development
 Composer
 License
+
+Database Commands
+
+****************
+As you create your tables, copy all commands used in psql into your readme file.
+
+Guest=# CREATE DATABASE shoes;
+CREATE DATABASE
+
+Guest=# \c shoes;
+You are now connected to database "shoes" as user "Guest".
+
+shoes=# CREATE TABLE brands (id serial PRIMARY KEY, name varchar);
+CREATE TABLE
+shoes=#
+
+shoes=# CREATE TABLE stores (id serial PRIMARY KEY, name varchar);
+CREATE TABLE
+shoes=#
+
+shoes=# CREATE TABLE brands_stores (id serial PRIMARY KEY, brand_id int, store_id int, );
+CREATE TABLE
+shoes=#
+
+shoes=# CREATE DATABASE shoes_test WITH TEMPLATE shoes;
+CREATE DATABASE
+shoes=# \c shoes_test;
+You are now connected to database "shoes_test" as user "Guest".
+shoes_test=#
+
+shoes_test=# \c shoes;
+You are now connected to database "shoes" as user "Guest".
+shoes=#
+
+/* to save and upload your databases, run the following in bash:
+
+pg_dump shoes -f shoes.sql
+pg_dump shoes_test -f shoes_test.sql
+
+to import, run the following in psql:
+
+/i shoes.sql;
+/i shoes_test.sql;
+
+*/
+
 
 The MIT License (MIT)
 

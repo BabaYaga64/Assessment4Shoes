@@ -1,0 +1,12 @@
+Feedback
+
+    1. you are on the right track, really close. All your tests are passing, your database is set up correctly, all the methods are there, your code is organized very well, you're committing, you have a readme, that is so awesome! It looks to me like you just have a bit more work to do on your Silex routes. Take another crack at that, and then you'll have it.
+
+    2. you were really close on the database naming. all your tables and columns were very well named, and everything is there, so don't bother to fix this until you're done with absolutely everything else in your project, but instead of calling your join table stores_brands, it should be in alphabetical order: brands_stores. This convention helps to avoid naming errors.
+
+    3. please include the .sql files with your repository next time when you resubmit as well as the commands for setting up the database in the readme. Makes it a lot faster for me to grade.
+
+    X 4. it would be good to include in your readme some more specific setup instructions for a regular user who isn't me - something along the lines of: "start your php server in the web directory and point your browser to the root path. Create the databases in psql by giving them these names 'shoes' and 'shoes_test' and then connect to each one and import the correct .sql file. " Also take a look at Tanner and John F's repos for examples of this. 
+
+    5. looks like you could be committing more often, but the ones that are there look good!
+
