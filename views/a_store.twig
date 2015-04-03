@@ -22,7 +22,7 @@
             <form action="/add_brands" method="post">
                 <input id="store_id" name="store_id" type="hidden" value="{{ store.getId}}">
 
-                <label for="store_id">Select a store</label>
+                <label for="brand_id">Select a brand</label>
                 <select id="store_id" name="store_id" type= "text">
                     {% for brand in brands %}
                         <option value="{{ brand.getId }}">{{ brand.getName }} </option>

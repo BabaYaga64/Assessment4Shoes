@@ -70,7 +70,7 @@
         $name = $_POST['name'];
         $brand = new Brand($_POST['name']);
         $brand->save();
-        return $app['twig']->render('brands.twig', array('brands' => Brand::getAll()));
+        return $app['twig']->render('a_brand.twig', array('brands' => Brand::getAll()));
     });
 
     $app->get("/brands/{id}", function($id) use ($app) {
@@ -81,7 +81,7 @@
 
     //Add a store to a brand
     //CREATE
-    $app->post("/brands/add_stores", function() use ($app) {
+    $app->post("/add_stores", function() use ($app) {
         $brand = Brand::find($_POST['brand_id']);
         $store = Store::find($_POST['store_id']);
         $brand->addStore($store);
@@ -104,12 +104,11 @@
         return $app['twig']->render('edit_store.twig', array('store' => $store));
     });
 
-    $app->patch("/stores/{id}/update", function($id) use ($app) {
+    $app->patch("/stores/{id}", function($id) use ($app) {
+        $name = $_POST['name'];
         $store = Store::find($id);
-        $new_name = $_POST['new_name'];
-        $store->updateStore($new_name);
-        $brands = $store->getBrands();
-        return $app['twig']->render('a_store.twig', array('store' => $store, 'brands' => $brands));
+        $store->update($name);
+        return $app['twig']->render('a_store.twig', array('store' => $store, 'brands' => $store->getBrands()));
     });
 
     //Delete all stores
