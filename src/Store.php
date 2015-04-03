@@ -4,14 +4,14 @@
     {
         private $name;
         private $id;
-    
+
 
 
         function __construct($name, $id = null)
         {
             $this->name = $name;
             $this->id = $id;
-        
+
 
         }
 
@@ -104,7 +104,7 @@ $GLOBALS['DB']->exec("DELETE FROM brands_stores WHERE store_id = {$this->getId()
         }
 
     //UPDATE
-        function updateStore($new_name)
+        function update($new_name)
         {
             $GLOBALS['DB']->exec("UPDATE stores SET name '{$new_name}' WHERE id = {$this->getId()};");
             $this->setName($new_name);
@@ -114,7 +114,7 @@ $GLOBALS['DB']->exec("DELETE FROM brands_stores WHERE store_id = {$this->getId()
 
         function addBrand($brand)
         {
-            $GLOBALS['DB']->exec("INSERT INTO brands_stores (brand_id, store_id) VALUES ({$brand->getId()}, {$this->getId()});");
+            $GLOBALS['DB']->exec("INSERT INTO brands_stores (brand_id, store_id) VALUES ({$brand->getId()}), {$this->getId()});");
         }
 
         function getBrands()

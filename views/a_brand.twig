@@ -17,14 +17,10 @@
             </ul>
         {% endif %}
 
-            <!-- <form action="/brands/{{ brand.getId }}/edit" method="get">
-                <button name="submit">Update</button>
-            </form> -->
-
             <h4>Add a store to this brand:</h4>
 
             <form action="add_stores" method="post">
-                <input id="brand_id" name="store_id" type="hidden" value="{{ brand.getId}}">
+                <input id="brand_id" name="store_id" type="hidden" value="{{ brand.getId }}">
 
                 <label for="store_id">Select a store</label>
                 <select id="store_id" name="brand_id" type= "text">

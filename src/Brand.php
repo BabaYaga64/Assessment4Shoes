@@ -4,13 +4,13 @@
     {
         private $name;
         private $id;
-        
+
 
         function __construct($name, $id = null)
         {
             $this->name = $name;
             $this->id = $id;
-            
+
         }
 
     //GETTERS
@@ -104,6 +104,12 @@
                 array_push($stores, $new_store);
 
             } return $stores;
+        }
+
+        function update($new_name)
+        {
+            $GLOBALS['DB']->exec("UPDATE brands SET name = '{$new_name}' WHERE id = {$this->getId()};");
+    $this->setName($new_name);
         }
 
     }//Ends class
