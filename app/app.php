@@ -61,20 +61,28 @@
 
     //Add a single brand
     //CREATE
-
-
-
+    $app->post("/brands", function() use ($app) {
+        $name = $_POST['name'];
+        $new_brand = new Brand($name);
+        $new_brand->save();
+        return $app['twig']->render('brands.twig', array('brands' => Brand::getAll()));    
+    });
 
 
     //Add a store to a brand
+    //CREATE
     $app->post("add_store", function() use ($app) {
-        $brand = Brand::find($_POST['brand_id']);
-        $store = Store::find($_POST['store_id']);
-        $brand->addStore($store);
-        return $app['twig']->render('a_brand.twig', array('brand' => $brand, 'brands' => Brand::getAll(), 'stores' => $brand->getStores(), 'stores' => Store::getAll()));
+        $brand = Brand::find($id);
+        $store = $_POST['store'];
+        $add_new_store = new Store($store);
+        $add_new_store->save();
+        $brand->addStore($add_new_store);
+        $stores = $brand->getStores();
+        return $app['twig']->render('a_brand.twig', array('stores' => $stores, 'brand' => $brand));
     });
 
     //Add a brand to a store
+    //CREATE
     $app->post("add_brand", function() use ($app) {
         $store = Store::find($_POST['store_id']);
         $brand = Brand::find($_POST['brand_id']);
