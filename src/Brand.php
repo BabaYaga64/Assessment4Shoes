@@ -78,6 +78,13 @@
             $GLOBALS['DB']->exec("DELETE FROM brands *;");
         }
 
+        //DELETE ONE BRAND
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM brands WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM stores WHERE brand_id = {$this->getId()};");
+        }
+
         // (don't worry about building out updating, listing, or deleting for brands).
 
         //JOIN STORES AND BRANDS

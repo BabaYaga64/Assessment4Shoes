@@ -13,6 +13,11 @@
 
 	<button type="submit">Update</button>
 
+	<form action="/stores/{{ store.getId }}" method="post">
+	<input name="_method" type="hidden" value="delete">
+
+	<button type="submit">Delete this store</button>
+
 </form>
 </body>
 </html>

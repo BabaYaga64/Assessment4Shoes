@@ -126,23 +126,22 @@
     });
 
     //Delete all stores
-    $app->delete("delete_stores", function() use ($app) {
+    $app->delete("/delete_stores", function() use ($app) {
         Store::deleteAll();
         return $app['twig']->render('stores.twig');
     });
 
     //Delete a single store
     //DELETE
-    $app->delete("/delete_store/{id}", function($id) use ($app) {
+    $app->delete("/delete_stores/{id}", function($id) use ($app) {
         $store = Store::find($id);
         $store->delete();
-        $stores = Store::getAll();
         return $app['twig']->render('stores.twig', array('stores' => $stores));
     });
 
     //Delete all brands
     //DELETE
-    $app->delete("delete_brands", function() use ($app) {
+    $app->delete("/delete_brands", function() use ($app) {
         Brand::deleteAll();
         return $app['twig']->render('brands.twig');
     });
