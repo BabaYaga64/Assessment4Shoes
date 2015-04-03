@@ -6,13 +6,39 @@
     <body>
         <h1>{{ brand.getName}}</h1>
 
-            <form action="/brands/{{ brand.getId }}/edit" method="get">
+        {% if stores is not empty %}
+            <p>
+                Here are the stores for this brand:
+            </p>
+            <ul>
+                {% for store in stores %}
+                    <li>{{ store.getName }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+            <!-- <form action="/brands/{{ brand.getId }}/edit" method="get">
                 <button name="submit">Update</button>
+            </form> -->
+
+            <h4>Add a store to this brand:</h4>
+
+            <form action="add_stores" method="post">
+                <input id="brand_id" name="store_id" type="hidden" value="{{ brand.getId}}">
+
+                <label for="store_id">Select a store</label>
+                <select id="store_id" name="brand_id" type= "text">
+                    {% for store in stores %}
+                        <option value="{{ store.getId }}">{{ store.getName }} </option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Add store</button>
             </form>
 
-            <p>
-                <a href="/brands">Go Back</a>
-            </p>
+            <p><a href="/brands/{{ brand.getId }}/edit">Edit this brand</a></p>
+
+            <p><a href='/'>Home</a></p>
+            <p><a href="/brands">Go Back</a></p>
         </p>
     </body>
 </html>

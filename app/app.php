@@ -75,32 +75,26 @@
 
     $app->get("/brands/{id}", function($id) use ($app) {
         $brand = Brand::find($id);
-        return $app['twig']->render('a_brand.twig', array('brand' => $brand, 'stores' => $brand->getStores(), 'brands' => Brand::getAll()));
+        return $app['twig']->render('a_brand.twig', array('brand' => $brand, 'stores' => $brand->getStores(), 'stores' => Store::getAll()));
     });
 
 
     //Add a store to a brand
     //CREATE
-    $app->post("/brand/{id}/store", function($id) use ($app) {
-        $brand = Brand::find($id);
-        $store = $_POST['store'];
-        $add_new_store = new Store($store);
-        $add_new_store->save();
-        $brand->addStore($add_new_store);
-        $stores = $brand->getStores();
-        return $app['twig']->render('a_brand.twig', array('stores' => $stores, 'brand' => $brand));
+    $app->post("/brands/add_stores", function() use ($app) {
+        $brand = Brand::find($_POST['brand_id']);
+        $store = Store::find($_POST['store_id']);
+        $brand->addStore($store);
+        return $app['twig']->render('a_brand.twig', array('brand' => $brand, 'brands' => Brand::getAll(), 'stores' => $brand->getStores(), 'stores' => Store::getAll()));
     });
 
     //Add a brand to a store
     //CREATE
-    $app->post("/store/{id}/brand", function($id) use ($app) {
-        $store = Store::find($id);
-        $brand = $_POST['brand'];
-        $add_new_brand = new Brand($brand);
-        $add_new_brand->save();
-        $store->addBrand($add_new_brand);
-        $brands = $store->getBrands();
-        return $app['twig']->render('a_store.twig', array('brands' => $brands, 'store' => $store));
+    $app->post("/stores/add_brands", function() use ($app) {
+        $brand = Brand::find($_POST['brand_id']);
+        $store = Store::find($_POST['store_id']);
+        $store->addBrand($brand);
+        return $app['twig']->render('a_store.twig', array('store' => $store, 'stores' =>Store::getAll(), 'brands' => $store->getBrands(), 'brands' => Brand::getAll()));
     });
 
     //Edit a store name
