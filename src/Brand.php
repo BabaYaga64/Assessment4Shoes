@@ -2,13 +2,15 @@
 
     class Brand
     {
-        private $id;
         private $name;
+        private $id;
+        
 
-        function __construct($id = null, $name)
+        function __construct($name, $id = null)
         {
-            $this->id = $id;
             $this->name = $name;
+            $this->id = $id;
+            
         }
 
     //GETTERS
@@ -64,12 +66,11 @@
             foreach($returned_brands as $brand) {
                 $id = $brand['id'];
                 $name = $brand['name'];
-                $new_brand = new Brand($id, $name);
+                $new_brand = new Brand($name, $id);
                 array_push($brands, $new_brand);
 
             } return $brands;
         }
- 
 
         //DELETE ALL BRANDS
         static function deleteAll()
@@ -83,14 +84,14 @@
 
         function addStore($store)
         {
-            $GLOBALS['DB']->exec("INSERT INTO shoes_brands (brand_id, store_id) VALUES ({$this->getId()}, {$store->getId()});");
+            $GLOBALS['DB']->exec("INSERT INTO brands_stores (brand_id, store_id) VALUES ({$this->getId()}, {$store->getId()});");
         }
 
         function getStores()
         {
             $query = $GLOBALS['DB']->query("SELECT stores.* FROM
-             brands JOIN shoes_brands ON (brands.id = shoes_brands.brand_id)
-                    JOIN stores ON (shoes_brands.store_id = stores.id)
+             brands JOIN brands_stores ON (brands.id = brands_stores.brand_id)
+                    JOIN stores ON (brands_stores.store_id = stores.id)
                     WHERE brands.id = {$this->getId()};");
 
             $store_ids = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -99,23 +100,11 @@
             foreach ($store_ids as $store) {
                 $id = $store['id'];
                 $name = $store['name'];
-                $new_store = new Store($id, $name);
+                $new_store = new Store($name, $id);
                 array_push($stores, $new_store);
 
             } return $stores;
-
         }
-
-
-
-
-
-
-
-
-
-
-
 
     }//Ends class
 

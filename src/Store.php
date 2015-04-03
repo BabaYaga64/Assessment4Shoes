@@ -2,14 +2,16 @@
 
     class Store
     {
-        private $id;
         private $name;
+        private $id;
+    
 
 
-        function __construct($id = null, $name)
+        function __construct($name, $id = null)
         {
-            $this->id = $id;
             $this->name = $name;
+            $this->id = $id;
+        
 
         }
 
@@ -78,7 +80,7 @@
             foreach($returned_stores as $store) {
                 $id = $store['id'];
                 $name = $store['name'];
-                $new_store = new Store($id, $name);
+                $new_store = new Store($name, $id);
                 array_push($stores, $new_store);
 
             } return $stores;
@@ -108,19 +110,18 @@ $GLOBALS['DB']->exec("DELETE FROM brands_stores WHERE store_id = {$this->getId()
             $this->setName($new_name);
         }
 
-
 //JOIN STORES AND BRANDS
 
         function addBrand($brand)
         {
-            $GLOBALS['DB']->exec("INSERT INTO shoes_brands (brand_id, store_id) VALUES ({$brand->getId()}, {$this->getId()});");
+            $GLOBALS['DB']->exec("INSERT INTO brands_stores (brand_id, store_id) VALUES ({$brand->getId()}, {$this->getId()});");
         }
 
         function getBrands()
         {
             $query = $GLOBALS['DB']->query("SELECT brands.* FROM
-                stores JOIN shoes_brands ON (stores.id = shoes_brands.store_id)
-                       JOIN brands ON (shoes_brands.brand_id = brands.id)
+                stores JOIN brands_stores ON (stores.id = brands_stores.store_id)
+                       JOIN brands ON (brands_stores.brand_id = brands.id)
                        WHERE stores.id = {$this->getId()};");
             $brand_ids = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -128,12 +129,11 @@ $GLOBALS['DB']->exec("DELETE FROM brands_stores WHERE store_id = {$this->getId()
             foreach ($brand_ids as $brand) {
                 $id = $brand['id'];
                 $name = $brand['name'];
-                $new_brand = new Brand($id, $name);
+                $new_brand = new Brand($name, $id);
                 array_push($brands, $new_brand);
             }
             return $brands;
         }
-
 
     }//Ends class
 

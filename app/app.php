@@ -8,14 +8,14 @@
 
     $app['debug'] = true;
 
-    use Symfony\Component\HttpFoundation\Request;
-    Request::enableHttpMethodParameterOverride();
-
     $DB = new PDO('pgsql:host=localhost;dbname=shoes');
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.path' => __DIR__.'/../views'
     ));
+
+    use Symfony\Component\HttpFoundation\Request;
+    Request::enableHttpMethodParameterOverride();
 
     //Home Page
     $app->get("/", function() use ($app) {
@@ -23,39 +23,48 @@
     });
 
     //View all stores
+    //READ
     $app->get("/stores", function() use ($app) {
         return $app['twig']->render('stores.twig', array('stores' => Store::getAll()));
     });
 
-    $app->post("/stores", function() use ($app) {
-    $new_store = new Store($_POST['id'], $_POST['name']);
-    $new_store->save();
-        return $app['twig']->render('stores.twig', array('stores' => Store::getAll(), 'brands' => Brand::getAll()));
-    });
 
     //View all brands
+    //READ
     //(don't worry about building out updating, listing, or deleting for brands).
     $app->get("/brands", function() use ($app) {
         return $app['twig']->render('brands.twig', array('brands' => Brand::getAll()));
     });
 
-    $app->post("/brands", function() use ($app) {
-    $new_brand = new Brand($_POST['id'], $_POST['name']);
-    $new_brand->save();
-        return $app['twig']->render('brands.twig', array('brands' => Brand::getAll()));
-    });
-
     //View a single store
+    //READ
     $app->get("/stores/{id}", function($id) use ($app) {
         $store = Store::find($id);
         return $app['twig']->render('a_store.twig', array('store' => $store, 'brands' => $store->getBrands(), 'brands' => Brand::getAll()));
     });
 
     //View a single brand
+    //READ
     $app->get("/brands/{id}", function($id) use ($app) {
         $brand = Brand::find($id);
         return $app['twig']->render('a_brand.twig', array('brand' => $brand, 'stores' => $brand->getStores(), 'stores' => Store::getAll()));
     });
+
+    //Add a single store (using form in stores.twig)
+    //CREATE
+    $app->post("/stores", function() use ($app) {
+        $name = $_POST['name'];
+        $new_store = new Store($name);
+        $new_store->save();
+        return $app['twig']->render('stores.twig', array('stores' => Store::getAll()));
+    });
+
+    //Add a single brand
+    //CREATE
+
+
+
+
 
     //Add a store to a brand
     $app->post("add_store", function() use ($app) {
@@ -100,6 +109,5 @@
     });
 
     return $app;
-
 
 ?>
