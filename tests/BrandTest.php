@@ -29,7 +29,7 @@
             $result = $test_brand->getId();
 
             //Assert
-            $this->assertEquals(1, $result);
+            $this->assertEquals($test_brand, $result);
         }
 
         function test_getName()

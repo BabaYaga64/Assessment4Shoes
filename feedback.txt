@@ -1,5 +1,19 @@
 Feedback
 
+Alright, getting close! Good work fixing the naming stuff too! Also, good work on your readme, and including the .sql files. Just a couple more things to finish. 
+But make sure you take a look at the javascript stuff on sunday so you don't get behind. Just work on this over the week when you have time.
+
+Some of your tests are not passing for getName, getId and getBrands. Thought they were before, so try to think back to what you have changed.
+
+Your update store button and your delete store button are both giving me the same error: No route found for "DELETE /stores/2": Method Not Allowed (Allow: GET, PATCH)
+
+Also getting a twig error when I try to create a new brand. Variable "brand" does not exist in "a_brand.twig" at line 7
+remember to check your postgres tab for errors when you are debugging this.
+
+
+Older feedback **********************
+
+
    X 1. you are on the right track, really close. All your tests are passing, your database is set up correctly, all the methods are there, your code is organized very well, you're committing, you have a readme, that is so awesome! It looks to me like you just have a bit more work to do on your Silex routes. Take another crack at that, and then you'll have it.
 
    X 2. you were really close on the database naming. all your tables and columns were very well named, and everything is there, so don't bother to fix this until you're done with absolutely everything else in your project, but instead of calling your join table stores_brands, it should be in alphabetical order: brands_stores. This convention helps to avoid naming errors.
