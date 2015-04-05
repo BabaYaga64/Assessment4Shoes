@@ -133,10 +133,10 @@
 
     //Delete a single store
     //DELETE
-    $app->delete("/delete_stores/{id}", function($id) use ($app) {
-        $store = Store::find($id);
-        $store->delete();
-        return $app['twig']->render('stores.twig', array('stores' => $stores));
+    $app->delete("/stores/{id}/delete", function($id) use ($app) {
+        $a_store = Store::find($id);
+        $a_store->delete();
+        return $app['twig']->render('stores.twig', array('stores' => Store::getAll()));
     });
 
     //Delete all brands
