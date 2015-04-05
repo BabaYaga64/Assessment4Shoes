@@ -24,7 +24,7 @@
             //Arrange
             $id = 1;
             $name = "Happy Feet";
-            $test_store = new Store($id, $name);
+            $test_store = new Store($name, $id);
 
             //Act
             $result = $test_store->getId();
@@ -40,7 +40,7 @@
             //Arrange
             $id = 1;
             $name = "Footlocker";
-            $test_store = new Store($id, $name);
+            $test_store = new Store($name, $id);
 
             //Act
             $result = $test_store->getName();
@@ -56,7 +56,7 @@
             //Arrange
             $id = 1;
             $name = "Happy Feet";
-            $test_store = new Store($id, $name);
+            $test_store = new Store($name, $id);
 
             //Act
             $test_store ->setId(2);
@@ -72,7 +72,7 @@
             //Arrange
             $id = 1;
             $name = "Footlocker";
-            $test_store = new Store($id, $name);
+            $test_store = new Store($name, $id);
 
             //Act
             $test_store->save();
@@ -88,11 +88,11 @@
             //Arrange
             $id = null;
             $name = "Sole Food";
-            $test_store = new Store($id, $name);
+            $test_store = new Store($name, $id);
 
             $id2 = null;
             $name2 = "Happy Feet";
-            $test_store2 = new Store($id2, $name2);
+            $test_store2 = new Store($name2, $id2);
 
             //Act
             $test_store->save();
@@ -108,17 +108,17 @@
             //Arrange
             $id = 1;
             $name = "Abazaba";
-            $test_store = new Store($id, $name);
+            $test_store = new Store($name, $id);
             $test_store->save();
 
             $id2 = 2;
             $name = "Spooky Shoes";
-            $test_brand = new Brand($id, $name);
+            $test_brand = new Brand($name, $id);
             $test_brand->save();
 
             $id3 = 3;
             $name2 = "Adidas";
-            $test_brand2 = new Brand($id, $name);
+            $test_brand2 = new Brand($name, $id);
             $test_brand2->save();
 
             //Act
@@ -129,25 +129,8 @@
             $result = $test_store->getBrands();
             $this->assertEquals([$test_brand, $test_brand2], $result);
 
-
-
-
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     }//Ends class
-
 
 ?>

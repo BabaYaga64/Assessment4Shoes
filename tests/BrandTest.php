@@ -23,13 +23,13 @@
             //Arrange
             $id = 1;
             $name = "Sketchers";
-            $test_brand = new Brand($id, $name);
+            $test_brand = new Brand($name, $id);
 
             //Act
             $result = $test_brand->getId();
 
             //Assert
-            $this->assertEquals($test_brand, $result);
+            $this->assertEquals(1, $result);
         }
 
         function test_getName()
@@ -37,7 +37,7 @@
             //Arrange
             $id = 1;
             $name = "Doc Martens";
-            $test_brand = new Brand($id, $name);
+            $test_brand = new Brand($name, $id);
 
             //Act
             $result = $test_brand->getName();
@@ -53,7 +53,7 @@
             //Arrange
             $id = 1;
             $name = "Dansko";
-            $test_brand = new Brand($id, $name);
+            $test_brand = new Brand($name, $id);
 
             //Act
             $test_brand->setId(2);
@@ -68,7 +68,7 @@
             //Arrange
             $id = 1;
             $name = "Jellies";
-            $test_brand = new Brand($id, $name);
+            $test_brand = new Brand($name, $id);
 
             //Act
             $test_brand->save();
@@ -83,11 +83,11 @@
             //Arrange
             $id = 1;
             $name = "Puma";
-            $test_brand = new Brand($id, $name);
+            $test_brand = new Brand($name, $id);
 
             $id2 = 2;
             $name2 = "Puma";
-            $test_brand2 = new Brand($id2, $name2);
+            $test_brand2 = new Brand($name2, $id2);
 
             //Act
             $test_brand->save();
@@ -104,11 +104,11 @@
             //Arrange
             $id = null;
             $name = "Spooky Shoes";
-            $test_brand = new Brand($id, $name);
+            $test_brand = new Brand($name, $id);
 
             $id2 = null;
             $name2 = "Crocs";
-            $test_brand2 = new Brand($id2, $name2);
+            $test_brand2 = new Brand($name2, $id2);
 
             $test_brand->save();
             $test_brand2->save();
@@ -128,11 +128,11 @@
             //Assert
             $id = 1;
             $name = "Keen";
-            $test_brand = new Brand($id, $name);
+            $test_brand = new Brand($name, $id);
 
             $id2 = 1;
             $name2 = "Converse";
-            $test_brand2 = new Brand($id2, $name2);
+            $test_brand2 = new Brand($name2, $id2);
 
             $test_brand->save();
             $test_brand2->save();
@@ -150,17 +150,17 @@
             //Arrange
             $id = 1;
             $name = "Mary Janes";
-            $test_brand = new Brand($id, $name);
+            $test_brand = new Brand($name, $id);
             $test_brand->save();
 
             $id2 = 3;
             $name2 = "Sole Food";
-            $test_store = new Store($id2, $name2);
+            $test_store = new Store($name2, $id2);
             $test_store->save();
 
             $id3 = 4;
             $name3 = "Happy Feet";
-            $test_store2 = new Store($id3, $name3);
+            $test_store2 = new Store($name3, $id3);
             $test_store2->save();
 
             //Act
