@@ -38,14 +38,14 @@
 
     //View a single store
     //READ
-    $app->get("/stores/{id}", function($id) use ($app) {
+    $app->get("/stores", function($id) use ($app) {
         $store = Store::find($id);
         return $app['twig']->render('a_store.twig', array('store' => $store, 'brands' => $store->getBrands(), 'brands' => Brand::getAll()));
     });
 
     //View a single brand
     //READ
-    $app->get("/brands/{id}", function($id) use ($app) {
+    $app->get("/brands", function($id) use ($app) {
         $brand = Brand::find($id);
         return $app['twig']->render('a_brand.twig', array('brand' => $brand, 'stores' => $brand->getStores(), 'stores' => Store::getAll()));
     });

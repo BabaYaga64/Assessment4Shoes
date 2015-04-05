@@ -3,7 +3,7 @@ Feedback
 Alright, getting close! Good work fixing the naming stuff too! Also, good work on your readme, and including the .sql files. Just a couple more things to finish. 
 But make sure you take a look at the javascript stuff on sunday so you don't get behind. Just work on this over the week when you have time.
 
-Some of your tests are not passing for getName, getId and getBrands. Thought they were before, so try to think back to what you have changed.
+X Some of your tests are not passing for getName, getId and getBrands. Thought they were before, so try to think back to what you have changed.
 
 Your update store button and your delete store button are both giving me the same error: No route found for "DELETE /stores/2": Method Not Allowed (Allow: GET, PATCH)
 
@@ -24,3 +24,4 @@ Older feedback **********************
 
     5. looks like you could be committing more often, but the ones that are there look good!
 
+     
