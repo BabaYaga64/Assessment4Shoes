@@ -12,7 +12,7 @@ Silex and Twig software is used to display the user interface for the app.
 
 ###Setup Instructions
 
-1. Clone git repository from remote repository on GitHubs
+1. Clone git repository from remote repository on GitHub
 
 2. Start PHP server in the web directory of your project folder. 
 
