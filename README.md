@@ -1,8 +1,8 @@
-Shoe Stores and Shoe Brands
+#Shoe Stores and Shoe Brands
 
-March 27th, 2015
+##March 27th, 2015
 
-Description
+###Description
 
 This program lists shoe stores and the brands of shoes they carry, illustrating a many-to-many relationship in SQL. One can view all of the brands that a particular store carries, and a user can add their own brand to the store. Likewise, a user can view all of the stores that a certain brand can be found in, and can add their own store to the list.
 
@@ -10,7 +10,7 @@ Silex and Twig software is used to display the user interface for the app.
 
 ***************
 
-Setup Instructions
+###Setup Instructions
 
 1. Clone git repository from remote repository on GitHubs
 
@@ -28,7 +28,7 @@ Setup Instructions
 
 ***************
 
-Technology
+###Technology
 
 PHP
 Silex
@@ -39,7 +39,7 @@ Test Driven Development
 Composer
 License
 
-Database Commands
+###Database Commands
 
 ****************
 As you create your tables, copy all commands used in psql into your readme file.
@@ -85,7 +85,7 @@ to import, run the following in psql:
 */
 
 
-The MIT License (MIT)
+###The MIT License (MIT)
 
 Copyright (c) 2015 Bojana Skarich
 
